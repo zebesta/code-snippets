@@ -3,7 +3,6 @@ import math
 
 def bubbleUp(arr, i):
     # base case, at root
-    #print("Bubbling at "+str(i))
     if(i<1):
         return
     # if node is greater than parent, swap them and call again on parent
@@ -20,7 +19,7 @@ def addToPQueue(arr, val):
     bubbleUp(arr, len(arr)-1)
     return arr
 
-def removeFromQueue(arr):
+def removeFromPQueue(arr):
     result = arr[0];
     arr[0] = arr.pop();
     arr = maxHeap(arr, 0);
@@ -28,14 +27,11 @@ def removeFromQueue(arr):
     return arr, result
 
 def maxHeap(arr, i):
-    #print(arr)
-    #print("Max heapifying at index " + str(i))
     #check if in bounds and has 2 children
     if len(arr) > (i*2+2):
         #check if less than a child node
         if arr[i] < arr[i*2+1] or arr[i] < arr[i*2+2]:
             if arr[i*2+2] < arr[i*2+1]:
-                #print("1")
                 #swap parent with left child
                 tmp = arr[i]
                 arr[i] = arr[i*2+1]
@@ -44,7 +40,6 @@ def maxHeap(arr, i):
                 arr = maxHeap(arr,i*2+1)
                 return arr
             else:
-                #print("2")
                 #swap parent with right child
                 tmp = arr[i]
                 arr[i] = arr[i*2+2]
@@ -55,7 +50,6 @@ def maxHeap(arr, i):
     #check if in bounds and has 1 child
     elif len(arr) > (i*2+1):
         if arr[i] < arr[i*2+1]:
-            #print("3")
             #swap parent with left child
             tmp = arr[i]
             arr[i] = arr[i*2+1]
@@ -64,9 +58,6 @@ def maxHeap(arr, i):
             arr = maxHeap(arr,i*2+1)
             return arr
     else:
-        #print("4")
-        # if (i-1 > 0):
-        #     maxHeapify(i-1)
         return arr
 
 
@@ -76,17 +67,19 @@ print(test)
 
 for i in range(math.floor(len(test)/2-1), -1, -1):
     maxHeap(test, i)
+
+
 print("Max Heaped:")
 print(test)
 test = addToPQueue(test, 200)
 print(test)
-test, value = removeFromQueue(test);
+test, value = removeFromPQueue(test);
 print(test)
 test = addToPQueue(test, 45)
 print(test)
-test, value = removeFromQueue(test);
+test, value = removeFromPQueue(test);
 print(test)
 test = addToPQueue(test, 2)
 print(test)
-test, value = removeFromQueue(test);
+test, value = removeFromPQueue(test);
 print(test)
