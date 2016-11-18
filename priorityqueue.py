@@ -1,64 +1,92 @@
-def heapSortWrapped(arr):
-    arrSorted = []
-    def maxHeapify(i):
-        print(arr)
-        print("Max heapifying at index " + str(i))
-        #check if in bounds and has 2 children
-        if len(arr) > (i*2+2):
-            #check if less than a child node
-            if arr[i] < arr[i*2+1] or arr[i] < arr[i*2+2]:
-                if arr[i*2+2] < arr[i*2+1]:
-                    print("1")
-                    #swap parent with left child
-                    tmp = arr[i]
-                    arr[i] = arr[i*2+1]
-                    arr[i*2+1] = tmp
-                    # max heapify left child
-                    maxHeapify(i*2+1)
-                    return arr
-                else:
-                    print("2")
-                    #swap parent with right child
-                    tmp = arr[i]
-                    arr[i] = arr[i*2+2]
-                    arr[i*2+2] = tmp
-                    # max heapify right child
-                    maxHeapify(i*2+2)
-                    return arr
-        #check if in bounds and has 1 child
-        elif len(arr) > (i*2+1):
-            if arr[i] < arr[i*2+1]:
-                print("3")
+import math
+
+
+def bubbleUp(arr, i):
+    # base case, at root
+    #print("Bubbling at "+str(i))
+    if(i<1):
+        return
+    # if node is greater than parent, swap them and call again on parent
+    if(arr[i]>arr[math.floor((i-1)/2)]):
+        tmp = arr[i]
+        arr[i] = arr[math.floor((i-1)/2)]
+        arr[math.floor((i-1)/2)] = tmp
+        bubbleUp(arr, math.floor((i-1)/2))
+    return arr
+
+def addToPQueue(arr, val):
+    print("adding " + str(val) + " to the pQueue")
+    arr.append(val)
+    bubbleUp(arr, len(arr)-1)
+    return arr
+
+def removeFromQueue(arr):
+    result = arr[0];
+    arr[0] = arr.pop();
+    arr = maxHeap(arr, 0);
+    print("Removing " + str(result) + " from the pQueue")
+    return arr, result
+
+def maxHeap(arr, i):
+    #print(arr)
+    #print("Max heapifying at index " + str(i))
+    #check if in bounds and has 2 children
+    if len(arr) > (i*2+2):
+        #check if less than a child node
+        if arr[i] < arr[i*2+1] or arr[i] < arr[i*2+2]:
+            if arr[i*2+2] < arr[i*2+1]:
+                #print("1")
                 #swap parent with left child
                 tmp = arr[i]
                 arr[i] = arr[i*2+1]
                 arr[i*2+1] = tmp
                 # max heapify left child
-                maxHeapify(i*2+1)
+                arr = maxHeap(arr,i*2+1)
                 return arr
-        else:
-            print("4")
-            # if (i-1 > 0):
-            #     maxHeapify(i-1)
+            else:
+                #print("2")
+                #swap parent with right child
+                tmp = arr[i]
+                arr[i] = arr[i*2+2]
+                arr[i*2+2] = tmp
+                # max heapify right child
+                arr = maxHeap(arr,i*2+2)
+                return arr
+    #check if in bounds and has 1 child
+    elif len(arr) > (i*2+1):
+        if arr[i] < arr[i*2+1]:
+            #print("3")
+            #swap parent with left child
+            tmp = arr[i]
+            arr[i] = arr[i*2+1]
+            arr[i*2+1] = tmp
+            # max heapify left child
+            arr = maxHeap(arr,i*2+1)
             return arr
+    else:
+        #print("4")
+        # if (i-1 > 0):
+        #     maxHeapify(i-1)
+        return arr
 
-    # arrayToHeap = [5,12,61,1,37,90,91,97]
-    # print(arrayToHeap)
-    print(len(arr)/2 - 2)
 
-    #construct original heap
-    for i in range(math.floor(len(arr)/2-1), -1, -1):
-        arr = maxHeapify(i)
-    print(arr)
+test = [80,45,1,3,5,100,42,38,56,23,65,23,65,83,102]
+print("Original:")
+print(test)
 
-    #sort the heap
-    def heapSort (arr):
-        while len(arr) > 1:
-            temp = arr[0]
-            arr[0] = arr.pop()
-            arrSorted.append(temp)
-            maxHeapify(0)
-            print(arr)
-        arrSorted.append(arr[0])
-
-    heapSort(arr)
+for i in range(math.floor(len(test)/2-1), -1, -1):
+    maxHeap(test, i)
+print("Max Heaped:")
+print(test)
+test = addToPQueue(test, 200)
+print(test)
+test, value = removeFromQueue(test);
+print(test)
+test = addToPQueue(test, 45)
+print(test)
+test, value = removeFromQueue(test);
+print(test)
+test = addToPQueue(test, 2)
+print(test)
+test, value = removeFromQueue(test);
+print(test)
