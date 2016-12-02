@@ -1,0 +1,23 @@
+{
+  "name": "dojos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bloomfilter.js",
+  "dependencies": {
+    "node-fs": "^0.1.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zebesta/code-snippets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zebesta/code-snippets/issues"
+  },
+  "homepage": "https://github.com/zebesta/code-snippets#readme"
+}
