@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+</head>
+<body>
+    <a href="http://jquery.com/">jQuery</a>
+    <p>Test1</p>
+    <p>Test2</p>
+    <p>Test3</p>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script>
+
+    $( document ).ready(function() {
+
+    $( "a" ).click(function( event ) {
+
+        alert( "Thanks for visiting!" );
+        $( "p" ).hide();
+
+    });
+    $( "p" ).click(function( event ) {
+      var content = $(this).html();
+        console.log( "you clicked!!" + content );
+        $(this).html('WHAAAT!?');
+
+    });
+
+});
+
+    </script>
+</body>
+</html>
