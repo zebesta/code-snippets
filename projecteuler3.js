@@ -1,8 +1,12 @@
 function largestPrimeFactor(bigNumber){
   for(var i = Math.floor(bigNumber/2); i>1; i--){
-    if(isPrime(i) == true && (bigNumber%i == 0)){
+    if(bigNumber % i ==0){
       console.log(i);
-      return i;
+      if(isPrime(i)){
+        console.log("The solution is: ");
+        console.log(i);
+        break;
+      }
     }
   }
 }
@@ -17,5 +21,5 @@ function isPrime(num){
   }
   return bool;
 }
-largestPrimeFactor(13195);
+//largestPrimeFactor(13195);
 largestPrimeFactor(600851475143);
