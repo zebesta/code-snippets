@@ -9,7 +9,7 @@ function largestPrimeFactor(bigNumber){
 
 function isPrime(num){
   var bool = true;
-  for(var i = 2; i<num && bool;i++){
+  for(var i = 2; i<num/2 && bool;i++){
     if(num%i == 0){
       bool = false;
     }

@@ -13,6 +13,7 @@ fs.readFile('./words.txt', "utf8", function read(err, data) {
   console.log("Finished adding words");
   console.log(array.length);
   checkSomeWords();
+  console.log(bloom);
   // console.log(bloom);
 
 });

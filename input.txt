@@ -1,0 +1,32 @@
+{
+  "hierarchy": {
+    "tag": "html",
+    "children": [
+      {
+        "tag": "body",
+        "classes": [
+          "mobile"
+        ],
+        "children": [
+          {
+            "tag": "div",
+            "id": "content",
+            "children": [
+              {
+                "tag": "p"
+              },
+              {
+                "tag": "p"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "tests": [
+    "p",
+    "div p",
+    "#content p"
+  ]
+}
