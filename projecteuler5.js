@@ -1,24 +1,50 @@
-// for(var number = 10; true; number +=10){
-//   for(var i = number; i>1; i--){
-//
-//   }
-//
-// }
+function primeFactors(range){
+  var factors = [];
+  for(var i = 2; i<=range; i++){
+    if(isPrime(i)){
+      factors.push(i);
+    }
+  }
+  console.log(factors);
+  var product = factors.reduce((a,b)=>{return a*b;}, 1);
+  console.log(product);
+  return product;
+}
 
-var found = false;
-var number = 9699690
-while(!found){
-  for(number; true; number += 9699690){
-    for(var i = 20; i >1; i--){
-      if(number%i !== 0){
-        break;
-      }
+
+function isPrime(num){
+  var bool = true;
+  for(var i = 2; i<num && bool;i++){
+    if(num%i == 0){
+      bool = false;
+      break;
+    }
+  }
+  return bool;
+}
+
+function isFactorizable(num, range){
+  var bool = true;
+  for(var i = 2; i<=range; i++){
+    if(num % i !== 0){
+      bool = false;
+      break;
+    }
+  }
+  return bool;
+}
+
+function eulerFive(range){
+  var pFact = primeFactors(range);
+  var number = pFact;
+  var found = false;
+  while(!found){
+    if(isFactorizable(number, range)){
+      found = true;
+      console.log(number);
+    }else{
+      number += pFact;
     }
   }
 }
-console.log(number)
-
-// for (i = 0; i < 10; i++) {
-//     if (i === 3) { continue; }
-//     console.log("The number is " + i + "<br>");
-// }
+eulerFive(20);
