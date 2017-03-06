@@ -1,4 +1,4 @@
-var arr = [2,35,246,234,2354,345,2,234,6,132,34,7,5676,32,25,6,3457,1234];
+var arr = [21343425,2345,4532,5423,4512,5231,64,6365,5,3425,423,5423,64,2314];
 
 function mergesort(arr){
   // console.log("sorting " + arr);
@@ -13,6 +13,13 @@ function mergesort(arr){
 
   var left_i = 0;
   var right_i = 0;
+
+  // Can optimize if the left and right are already in order
+  if(left[left.length - 1] < right[0]){
+    console.log("OPTIMIZING!");
+    sorted = left.concat(right);
+    return sorted
+  }
 
   for(var i = 0; i < arr.length; i++){
     if(left[left_i] && right[right_i]){
