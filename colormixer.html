@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<style>
+
+.red {
+background-color: #FF0000;
+}
+
+.yellow {
+background-color: #FFFF00;
+}
+
+.green {
+background-color: #00FF00;
+}
+
+.blue {
+background-color: #0000FF;
+}
+</style>
+</head>
+<body>
+<div id='preview' style="height:100px;">#FFFFFF</div>
+<div>
+  <div class='red' style="height:100px; width:100px;">red</div>
+  <div class='yellow' style="height:100px; width:100px;">yellow</div>
+  <div class='green' style="height:100px; width:100px;">green</div>
+  <div class='blue' style="height:100px; width:100px;">blue</div>
+</div>
+<script>
+// Your code here!
+
+var previewColor = [255,255,255]; // r g b
+
+document.getElementsByClassName("red")[0].addEventListener("click", function(){updateColor([255,0,0])});
+document.getElementsByClassName("yellow")[0].addEventListener("click", function(){updateColor([255,255,0])});
+document.getElementsByClassName("green")[0].addEventListener("click", function(){updateColor([0,255,0])});
+document.getElementsByClassName("blue")[0].addEventListener("click", function(){updateColor([0,0,255])});
+// document.getElementsByClassName("blue")[0].addEventListener("click", helloworld, false);
+
+// var hi = helloworld();
+function helloworld() {
+  console.log("Hello world");
+}
+
+
+function updateColor(color) {
+  console.log("updating color with! " + color)
+  var newRed = Math.floor(previewColor[0] * 0.9 + color[0] * 0.1);
+  var newGreen = Math.floor(previewColor[1] * 0.9 + color[1] * 0.1);
+  var newBlue = Math.floor(previewColor[2] * 0.9 + color[2] * 0.1);
+  previewColor = [newRed, newGreen, newBlue];
+  var previewColorString = 'rgb(' + previewColor.join(',') + ')';
+  var colorText = '#';
+
+  for(let c of previewColor){
+    if(c < 16){
+      colorText+='0';
+    }
+    colorText += Number(c).toString(16);
+
+  }
+
+    var previewElement = document.getElementById("preview");
+    // previewElement.style.background-color=previewColorString;
+    previewElement.innerHTML = colorText;
+    previewElement.style.backgroundColor = colorText;
+    // document.getElementById('preview').style.backgroundColor = "black";
+}
+// Number(x).toString(16)
+</script>
+</body>
+</html>
