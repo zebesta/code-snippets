@@ -1,5 +1,6 @@
 
 // A function that takes in eggs and number of floors and return the max number of drops required
+//recursive
 function eggdrop(eggs, floors){
 
   if(eggs == 1 || floors <= 1){
