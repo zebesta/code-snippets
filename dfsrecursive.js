@@ -37,26 +37,24 @@ class Graph {
       }
     }
   }
+  dfs_util(a, visited) {
+    if(!visited[a]){
+      visited[a] = true // visit it
+      console.log(a)
+
+      var neighbors = this.graph[a];
+      for(let n of neighbors){
+        this.dfs_util(n, visited);
+      }
+
+    }
+  }
 
   dfs(a) {
     var visited = {};
-    var stack = [];
-
-    stack.push(a);
-    while(stack.length > 0){
-      var current = stack.pop();
-      console.log(current);
-      visited[current] = true;
-
-      var neighbors = this.graph[current];
-      for(let n of neighbors){
-        //add neighbor to stack if not visted yet
-        if(!visited[n]){
-          stack.push(n);
-        }
-      }
-    }
+    this.dfs_util(a, visited);
   }
+
 
   path(a, b) {
     this.bfs(a);
@@ -81,8 +79,8 @@ g.addEdge(3, 3);
 // g.addEdge(4, 5);
 // g.addEdge(2,5);
 
-console.log("Following is Breadth First Traversal (starting from vertex 2)");
-g.bfs(2);
+// console.log("Following is Breadth First Traversal (starting from vertex 2)");
+// g.bfs(2);
 console.log("Following is Depth First Traversal (starting from vertex 2)");
 g.dfs(2);
 
