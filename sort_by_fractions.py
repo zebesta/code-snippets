@@ -6,3 +6,6 @@ def sort_by_frac(a):
 
 print(arr)
 print(sorted(arr, key=sort_by_frac))
+
+list.sort(arr, key=sort_by_frac)
+print(arr)
